@@ -89,7 +89,7 @@ public class TeleopModeDrive extends OpMode
 
     void moveRegular(double power) {
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
-        rightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightFrontMotor.setDirection(DcMotor.Direction.FORWARD);
         leftBackMotor.setDirection(DcMotor.Direction.REVERSE);
         rightBackMotor.setDirection(DcMotor.Direction.REVERSE);
         leftFrontMotor.setPower(power);
@@ -113,49 +113,6 @@ public class TeleopModeDrive extends OpMode
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
         rightFrontMotor.setDirection(DcMotor.Direction.FORWARD);
         leftBackMotor.setDirection(DcMotor.Direction.FORWARD);
-        rightBackMotor.setDirection(DcMotor.Direction.FORWARD);
-        leftFrontMotor.setPower(power);
-        leftBackMotor.setPower(power);
-        rightFrontMotor.setPower(power);
-        rightBackMotor.setPower(power);
-    }
-
-    void StrafeLeft(double power) {
-        leftFrontMotor.setDirection(DcMotor.Direction.REVERSE);
-        rightFrontMotor.setDirection(DcMotor.Direction.FORWARD);
-        leftBackMotor.setDirection(DcMotor.Direction.FORWARD);
-        rightBackMotor.setDirection(DcMotor.Direction.REVERSE);
-        leftFrontMotor.setPower(power);
-        leftBackMotor.setPower(power);
-        rightFrontMotor.setPower(power);
-        rightBackMotor.setPower(power);
-    }
-    void StrafeRight(double power) {
-        leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
-        rightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
-        leftBackMotor.setDirection(DcMotor.Direction.REVERSE);
-        rightBackMotor.setDirection(DcMotor.Direction.FORWARD);
-        leftFrontMotor.setPower(power);
-        leftBackMotor.setPower(power);
-        rightFrontMotor.setPower(power);
-        rightBackMotor.setPower(power);
-    }
-    void StrafeCornerRight(double power) {
-        leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
-        rightBackMotor.setDirection(DcMotor.Direction.FORWARD);
-        leftFrontMotor.setPower(power);
-        rightBackMotor.setPower(power);
-    }
-    void StrafeCornerLeft(double power) {
-        rightFrontMotor.setDirection(DcMotor.Direction.FORWARD);
-        leftBackMotor.setDirection(DcMotor.Direction.FORWARD);
-        leftBackMotor.setPower(power);
-        rightFrontMotor.setPower(power);
-    }
-    void SpinCounterClockwise(double power) {
-        leftFrontMotor.setDirection(DcMotor.Direction.REVERSE);
-        rightFrontMotor.setDirection(DcMotor.Direction.FORWARD);
-        leftBackMotor.setDirection(DcMotor.Direction.REVERSE);
         rightBackMotor.setDirection(DcMotor.Direction.FORWARD);
         leftFrontMotor.setPower(power);
         leftBackMotor.setPower(power);
@@ -213,37 +170,10 @@ public class TeleopModeDrive extends OpMode
             servo.setPosition(0.825);
         }
 
-        while (a){
+        else if (a){
             servo.setPosition(1);
-            break;
         }
 
-        while (dpad_left = true)
-        {
-            StrafeLeft(power);
-            break;
-        }
-
-
-        while (dpad_right = true)
-        {
-            StrafeRight(power);
-            break;
-        }
-
-
-        while (dpad_down = true)
-        {
-            StrafeCornerRight(power);
-            break;
-        }
-
-
-        while (dpad_up = true)
-        {
-            StrafeCornerLeft(power);
-            break;
-        }
 
 
         // Show the elapsed game time and wheel power.
