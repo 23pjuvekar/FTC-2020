@@ -185,7 +185,9 @@ public class TeleopModeDrive extends OpMode
             moveLeft(power);
         } else if ((left_stick_x > 0) & (right_stick_x == 0)) {
             moveRight(power);
-        } else if (right_stick_x < 0) {
+        } 
+        
+        if (right_stick_x < 0) {
             strafeleft(power);
         } else if (right_stick_x > 0) {
             strafeRight(power);
