@@ -191,17 +191,12 @@ public class TeleopModeDrive extends OpMode
             strafeRight(power);
         }
 
-<<<<<<< HEAD
+
 
         // allows servo to be able to move
-
-
-
-=======
        if (!a){
            servo.setPosition(0.825);
        }
->>>>>>> afd0ffdf4fc004f43d3155976f0128bb68af9177
 
        else if (a){
            servo.setPosition(1);
