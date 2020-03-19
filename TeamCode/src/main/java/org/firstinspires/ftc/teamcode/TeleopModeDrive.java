@@ -114,6 +114,27 @@ public class TeleopModeDrive extends OpMode
         rightBackMotor.setPower(power);
     }
 
+    void strafeRight(double power) {
+        leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
+        rightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
+        leftBackMotor.setDirection(DcMotor.Direction.FORWARD);
+        rightBackMotor.setDirection(DcMotor.Direction.REVERSE);
+        leftFrontMotor.setPower(power);
+        leftBackMotor.setPower(power);
+        rightFrontMotor.setPower(power);
+        rightBackMotor.setPower(power);
+    }
+
+    void strafeleft(double power) {
+        leftFrontMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightFrontMotor.setDirection(DcMotor.Direction.FORWARD);
+        leftBackMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightBackMotor.setDirection(DcMotor.Direction.FORWARD);
+        leftFrontMotor.setPower(power);
+        leftBackMotor.setPower(power);
+        rightFrontMotor.setPower(power);
+        rightBackMotor.setPower(power);
+    }
 
 
     /*
@@ -143,16 +164,18 @@ public class TeleopModeDrive extends OpMode
             left_stick_x = 0;
         }
 
-        // allows robot to move fowards and backwards
+        // allows robot to move fowards and backwards/strafe
         if (left_stick_x == 0) {
             moveRegular(power);
-        } else if (left_stick_x < 0) {
+        } else if ((left_stick_x < 0) & (right_stick_x == 0)) {
             moveLeft(power);
-        } else if (left_stick_x > 0) {
+        } else if ((left_stick_x > 0) & (right_stick_x == 0)) {
             moveRight(power);
+        } else if (right_stick_x < 0) {
+            strafeleft(power);
+        } else if (right_stick_x > 0) {
+            strafeRight(power);
         }
-
-        // allows for strafing of the robot
 
 
         // allows servo to be able to move
