@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
@@ -21,7 +22,8 @@ public class TeleopModeDrive extends OpMode
     private DcMotor rightFrontMotor = null;
     private DcMotor leftBackMotor = null;
     private DcMotor rightBackMotor = null;
-    private Servo servo = null;
+    private Servo frontRightServo = null;
+    private Servo frontLeftServo = null;
     double servoPosition = 0.825 ;
 
     // Sets variables to 0, to reset them before they are used
@@ -31,15 +33,7 @@ public class TeleopModeDrive extends OpMode
     double left_stick_y = 0;
     double right_stick_x = 0;
     double right_stick_y = 0;
-    boolean dpad_right;
-    boolean dpad_left;
-    boolean dpad_up;
-    boolean dpad_down;
-    boolean a;
-    boolean y;
-    boolean x;
-    boolean b;
-
+    double rightTrigger2 = 0;
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -54,8 +48,8 @@ public class TeleopModeDrive extends OpMode
         rightFrontMotor = hardwareMap.get(DcMotor.class, "rfm");
         leftBackMotor  = hardwareMap.get(DcMotor.class, "lbm");
         rightBackMotor = hardwareMap.get(DcMotor.class, "rbm");
-        servo = hardwareMap.get(Servo.class, "armServo");
-
+        frontRightServo = hardwareMap.get(Servo.class, "armRightServo");
+        frontLeftServo = hardwareMap.get(Servo.class, "armLeftServo");
 
 
 
@@ -89,8 +83,8 @@ public class TeleopModeDrive extends OpMode
 
     void moveRegular(double power) {
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
-        rightFrontMotor.setDirection(DcMotor.Direction.FORWARD);
-        leftBackMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
+        leftBackMotor.setDirection(DcMotor.Direction.FORWARD);
         rightBackMotor.setDirection(DcMotor.Direction.REVERSE);
         leftFrontMotor.setPower(power);
         leftBackMotor.setPower(power);
@@ -122,7 +116,6 @@ public class TeleopModeDrive extends OpMode
 
 
 
-
     /*
      * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
      */
@@ -137,17 +130,10 @@ public class TeleopModeDrive extends OpMode
         left_stick_y = gamepad1.left_stick_y;
         right_stick_x = gamepad1.right_stick_x;
         right_stick_y = gamepad1.right_stick_y;
-        dpad_left = gamepad1.dpad_left;
-        dpad_right = gamepad1.dpad_right;
-        dpad_up = gamepad1.dpad_up;
-        dpad_down = gamepad1.dpad_down;
-        a = gamepad1.a;
-        float arm = gamepad1.right_stick_x;
-        y = gamepad1.y;
+        rightTrigger2 = gamepad2.right_trigger;
 
 
         double power = rightTrigger + leftTrigger;
-        double servoPosition = right_stick_x;
         // Setting up Null Zone for the robot
         if (power < 0.05 & power > -0.05) {
             power = 0;
@@ -166,13 +152,12 @@ public class TeleopModeDrive extends OpMode
             moveRight(power);
         }
 
-        if (!a){
-            servo.setPosition(0.825);
-        }
+        // allows for strafing of the robot
 
-        else if (a){
-            servo.setPosition(1);
-        }
+
+        // allows servo to be able to move
+
+
 
 
 
