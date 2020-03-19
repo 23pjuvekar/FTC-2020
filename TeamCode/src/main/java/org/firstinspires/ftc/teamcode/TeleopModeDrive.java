@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
@@ -89,8 +90,8 @@ public class TeleopModeDrive extends OpMode
 
     void moveRegular(double power) {
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
-        rightFrontMotor.setDirection(DcMotor.Direction.FORWARD);
-        leftBackMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
+        leftBackMotor.setDirection(DcMotor.Direction.FORWARD);
         rightBackMotor.setDirection(DcMotor.Direction.REVERSE);
         leftFrontMotor.setPower(power);
         leftBackMotor.setPower(power);
@@ -191,22 +192,14 @@ public class TeleopModeDrive extends OpMode
             strafeRight(power);
         }
 
-<<<<<<< HEAD
 
         // allows servo to be able to move
-
-
-
-=======
        if (!a){
            servo.setPosition(0.825);
        }
->>>>>>> afd0ffdf4fc004f43d3155976f0128bb68af9177
-
        else if (a){
            servo.setPosition(1);
        }
-
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "power (%.2f)", power);
